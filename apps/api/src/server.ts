@@ -1,22 +1,9 @@
-import { json, urlencoded } from "body-parser";
-import express, { type Express } from "express";
-import morgan from "morgan";
-import cors from "cors";
+import { logger } from '@youtility/logger';
+import { createServer } from './app';
 
-export const createServer = (): Express => {
-  const app = express();
-  app
-    .disable("x-powered-by")
-    .use(morgan("dev"))
-    .use(urlencoded({ extended: true }))
-    .use(json())
-    .use(cors())
-    .get("/message/:name", (req, res) => {
-      return res.json({ message: `hello ${req.params.name}` });
-    })
-    .get("/status", (_, res) => {
-      return res.json({ ok: true });
-    });
+const port = process.env.PORT || 5001;
+const server = createServer();
 
-  return app;
-};
+server.listen(port, () => {
+  logger.info(`api running on ${port}`);
+});
