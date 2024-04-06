@@ -1,0 +1,13 @@
+{
+  "exclude": ["node_modules"],
+  "extends": "@youtility/typescript-config/vite.json",
+  "compilerOptions": {
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+   "include": ["src", "vite.config.ts"]
+}
